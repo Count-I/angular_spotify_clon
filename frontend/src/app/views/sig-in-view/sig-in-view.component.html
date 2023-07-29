@@ -1,0 +1,50 @@
+<div class="app absolute w-full h-[100%] top-0 left-0 overflow-hidden m-0 p-0">
+    <div class="relative w-full h-[100%]">
+        <span></span>
+
+        <div class="landing-wrapper flex z-10 flex-col items-center justify-start w-100">
+            <div class="landing-wrapper-before absolute top-0 left-0 -z-10 w-full h-[222px] bg-[#00a884]"></div>
+            <div
+                class="landing-header flex-none flex items-center justify-start min-h-[38px]  mt-[27px] mb-[28px] w-[1000px]">
+                <span class="w-10"><img class="w-[37px] h-[38px]" src="../../../assets/wp.png" alt=""></span>
+                <div
+                    class="landing-headerTitle inline-block text-[14px] font-medium uppercase text-center text-white ml-[14px]">
+                    whatsapp web</div>
+            </div>
+            <div class="landing-window flex-none flex flex-col overflow-hidden bg-white w-[1000px] mx-auto rounded">
+                <div class="landing-main p-[60px] relative w-full box-border pb-12">
+                    <div class="landing-main_1">
+                        <div class="flex flex-col items-center">
+                            <div class="mb-4">
+                                <div class=" text-[28px] font-light leading-normal text-[#41525d]">
+                                    Ingresa el número de teléfono
+                                </div>
+                            </div>
+                            <div class="mb-8 text-base font-normal text-[#8696a0]">
+                                <p>Selecciona un país e ingresa tu número de teléfono de whatsapp.</p>
+                            </div>
+                            <div *ngIf="auth.isSignining() | async">
+                                <app-sign-in></app-sign-in>
+                            </div>
+                            <div *ngIf="(auth.isSignining() |async) != true">
+                                <app-sign-up></app-sign-up>
+                            </div>
+                        </div>
+                        <div class="flex justify-center">
+                        <div *ngIf="auth.isSignining() | async">
+                            <button (click)="auth.goToSignUp()">
+                                <p class="text-[#008069]">No tienes whatsapp? registrate con tu número de teléfono</p>
+                            </button>
+                        </div>
+                        <div *ngIf="(auth.isSignining() |async) != true">
+                            <button (click)="auth.goToSignIn()">
+                                <p class="text-[#008069]">Ya tienes whatsapp? Ingresa con tu número de teléfono</p>
+                            </button>
+                        </div>                          
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
