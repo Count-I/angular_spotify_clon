@@ -11,6 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SigInViewComponent } from './views/sig-in-view/sig-in-view.component';
+import { CurrentChatComponent } from './components/current-chat/current-chat.component';
+import { LandingChatComponent } from './components/current-chat/components/landing-chat/landing-chat.component';
+import { SelectedChatComponent } from './components/current-chat/components/selected-chat/selected-chat.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { SigInViewComponent } from './views/sig-in-view/sig-in-view.component';
     SignInComponent,
     SignUpComponent,
     SigInViewComponent,
+    CurrentChatComponent,
+    LandingChatComponent,
+    SelectedChatComponent,
   ],
   imports: [
     BrowserModule,
