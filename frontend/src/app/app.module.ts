@@ -14,6 +14,12 @@ import { SigInViewComponent } from './views/sig-in-view/sig-in-view.component';
 import { CurrentChatComponent } from './components/current-chat/current-chat.component';
 import { LandingChatComponent } from './components/current-chat/components/landing-chat/landing-chat.component';
 import { SelectedChatComponent } from './components/current-chat/components/selected-chat/selected-chat.component';
+import { MessageBoxComponent } from './components/current-chat/components/message-box/message-box.component';
+import { CookieService } from 'ngx-cookie-service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ChatService } from './services/chat.service';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -24,6 +30,7 @@ import { SelectedChatComponent } from './components/current-chat/components/sele
     CurrentChatComponent,
     LandingChatComponent,
     SelectedChatComponent,
+    MessageBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +40,10 @@ import { SelectedChatComponent } from './components/current-chat/components/sele
     FormsModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [CookieService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
