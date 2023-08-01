@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
+import { MainConfigComponent } from './components/main-config/main-config.component';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContactComponent,
     ContactListComponent,
     SignInComponent,
+    ContactDetailComponent,
+    MainConfigComponent,
   ],
   imports: [
     BrowserModule,
