@@ -4,19 +4,19 @@ import { SigInViewComponent } from './views/sig-in-view/sig-in-view.component';
 import { CurrentChatComponent } from './components/current-chat/current-chat.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'chat',
-    pathMatch: 'full',
-  },
+  // {
+  //   path: '',
+  //   redirectTo: 'chat',
+  //   pathMatch: 'full',
+  // },
   {path:'signin', component: SigInViewComponent},
   {path:'signup', component: SigInViewComponent},
-  {path:'chat', component: CurrentChatComponent},
-  {
-    path: '**',
-    redirectTo: 'chat',
-    pathMatch: 'full'
-  }
+  {path:':room', component: CurrentChatComponent},
+  // {
+  //   path: '**',
+  //   redirectTo: 'chat',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({
