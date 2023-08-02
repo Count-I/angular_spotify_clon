@@ -1,22 +1,23 @@
-import express, { Request, Response, Router } from 'express';
-// import { authController } from '../controllers/authController';
-// import { conexion } from '../database/db';
+import express, { Router } from 'express';
+import { contacts, createContact,updateContact ,deleteContact} from '../controllers/authControllers';
 
+let contactsList = [
+    { id: 1, nombre: 'John', descripcion: 'Amigo', telefono: '123456' },
+    { id: 2, nombre: 'Alice', descripcion: 'Familia', telefono: '789012' },
+    // ...
+  ];
+
+ 
+  
 const router: Router = express.Router();
 
-// router para las vistas
+router.get('/:nombre/:descripcion/:telefono/:contrasenia',contacts);
 
-router.get('/contacts', (req: Request, res: Response) => {
-  // conexion();
-  res.render('index');
-});
+ router.post('/', createContact);
 
-router.get('/login', (req: Request, res: Response) => {
-  res.render('login');
-});
+ router.put('/:id', updateContact);
 
-router.get('/register', (req: Request, res: Response) => {
-  res.render('register');
-});
+ router.delete('/:id', deleteContact);
+
 
 export default router;
