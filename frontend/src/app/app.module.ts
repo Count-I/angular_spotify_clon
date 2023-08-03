@@ -4,7 +4,6 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +20,8 @@ import { MessageBoxComponent } from './components/current-chat/components/messag
 import { CookieService } from 'ngx-cookie-service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ChatService } from './services/chat.service';
+import { MainComponent } from './views/main/main.component';
+import { HeaderComponent } from './components/contact/components/header/header.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -30,12 +31,14 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ContactComponent,
     ContactListComponent,
     SignInComponent,
-    SignUpComponent,
     SigInViewComponent,
     CurrentChatComponent,
     LandingChatComponent,
     SelectedChatComponent,
     MessageBoxComponent,
+    SignUpComponent,
+    MainComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
