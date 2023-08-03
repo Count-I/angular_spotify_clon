@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ContactComponent } from './components/contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +27,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
   declarations: [
     AppComponent,
+    ContactComponent,
+    ContactListComponent,
     SignInComponent,
     SignUpComponent,
     SigInViewComponent,
