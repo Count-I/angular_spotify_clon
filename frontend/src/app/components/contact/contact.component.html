@@ -1,34 +1,101 @@
-<div class="flex justify-start bg-whatsapp h-full">
-  <div class="chat-container relative w-96 bg-gradient-to-r #020617 shadow-lg rounded-lg">
-    <div class="p-4 bg-[#111b21] h-full ">
-      <div class="flex items-center bg-gray-800 placeholder-gray-400 text-white outline-none px-2 py-2 rounded-lg w-full mb-4">
+<div class="flex justify-start bg-whatsapp  h-full overflow-hidden">
+  <div class="chat-container relative w-full bg-gradient-to-r #020617 shadow-lg rounded-lg">
+    <div class=" bg-[#111b21] h-full">
+      <app-header></app-header>
+      <div
+        class="flex items-center bg-gray-800 placeholder-gray-400 text-white outline-none px-2 py-2 rounded-lg w-full mb-4">
         <span class="text-white">
-          <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" class="" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve">
-            <path fill="currentColor" d="M15.009,13.805h-0.636l-0.22-0.219c0.781-0.911,1.256-2.092,1.256-3.386 c0-2.876-2.332-5.207-5.207-5.207c-2.876,0-5.208,2.331-5.208,5.207s2.331,5.208,5.208,5.208c1.293,0,2.474-0.474,3.385-1.255 l0.221,0.22v0.635l4.004,3.999l1.194-1.195L15.009,13.805z M10.201,13.805c-1.991,0-3.605-1.614-3.605-3.605 s1.614-3.605,3.605-3.605s3.605,1.614,3.605,3.605S12.192,13.805,10.201,13.805z"></path>
+          <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet" class="" version="1.1"
+            x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve">
+            <path fill="currentColor"
+              d="M15.009,13.805h-0.636l-0.22-0.219c0.781-0.911,1.256-2.092,1.256-3.386 c0-2.876-2.332-5.207-5.207-5.207c-2.876,0-5.208,2.331-5.208,5.207s2.331,5.208,5.208,5.208c1.293,0,2.474-0.474,3.385-1.255 l0.221,0.22v0.635l4.004,3.999l1.194-1.195L15.009,13.805z M10.201,13.805c-1.991,0-3.605-1.614-3.605-3.605 s1.614-3.605,3.605-3.605s3.605,1.614,3.605,3.605S12.192,13.805,10.201,13.805z">
+            </path>
           </svg>
         </span>
-        <input class="bg-gray-800 placeholder-gray-400 text-white outline-none rounded-full ml-4 flex-1" type="text" placeholder="Busca un chat o inicia uno nuevo">
+        <input class="bg-gray-800 placeholder-gray-400 text-white outline-none rounded-full ml-4 flex-1" type="text"
+          placeholder="Busca un chat o inicia uno nuevo">
       </div>
-      <ul class="divide-y divide-[#222d34]">
-        <li *ngFor="let chat of chats" class="py-4 flex items-start justify-between hover:bg-gray-800 cursor-pointer">
-          <img [src]="chat.img" alt="Imagen de perfil" class="w-16 h-16 rounded-full mr-4">
-          <div class="flex-1">
-            <div class="text-white">{{chat.name}}</div>
-            <div class="text-gray-500">{{chat.message}}</div>
+      <div #scroll class=" box-border w-full h-full overflow-x-hidden overflow-y-scroll">
+        <ul tabindex="-1" class="divide-y divide-[#222d34] " *ngFor="let chat of chats">
+          <div class="relative">
+            <li class="h-[72px] translate-y-0  w-full">
+              <div class="relative">
+                <div tabindex="-1" role="row">
+                  <div class="relative flex h-[72px] cursor-pointer bg-[#111b21] hover:bg-[#202c33]">
+                    <div class="flex">
+                      <div class="mt-[-1px] flex-none items-center flex pl-[13px] pr-[15px]">
+                        <div>
+
+                          <div class="w-[49px] h-[49px] rounded-full">
+
+                            <img [src]="chat.img" alt="Imagen de perfil"
+                              class=" w-[49px] h-[49px] visible rounded-full object-cover">
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex basis-auto flex-col justify-center min-w-0 grow pr-[15px] border-t border-solid border-[rgb(134,150,160,0.15)]">
+                      <div class="text-left flex items-center leading-normal ">
+                        <div
+                          class="text-left leading-normal flex grow overflow-hidden text-[17px] font-normal text-[#e9edef] break-words">
+                          <span
+                            class="visible overflow-hidden text-elipsis whitespace-nowrap inline-block grow relative ">
+                            {{chat.name}}
+                          </span>
+                        </div>
+                        <div
+                          class="mt-[3px] ml-[6px] overflow-hidden leading-[14px] text-elipsis whitespace-nowrap flex max-w-full text-xs text-[#8696a0] capitalize ">
+                          <span>
+                            {{chat.hour}}
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        class="text-[#d1d7db] mt-0.5 flex iitems-center min-h-5 text-[13px] leading-5 text-[#8696a0]">
+                        <div
+                          class="text-left grow overflow-hidden text-[14px] font-normal leading-5 text-elipsis whitespace-nowrap">
+                          <span class="flex items-start">
+                            <div class="mr-0.5 text-[#53bdeb] align-top">
+                              <span>
+                                <svg viewBox="0 0 18 18" height="18" width="18" preserveAspectRatio="xMidYMid meet"
+                                  class="pointer-events-none flex-none block" version="1.1" x="0px" y="0px"
+                                  enable-background="new 0 0 18 18" xml:space="preserve">
+                                  <path fill="currentColor"
+                                    d="M17.394,5.035l-0.57-0.444c-0.188-0.147-0.462-0.113-0.609,0.076l-6.39,8.198 c-0.147,0.188-0.406,0.206-0.577,0.039l-0.427-0.388c-0.171-0.167-0.431-0.15-0.578,0.038L7.792,13.13 c-0.147,0.188-0.128,0.478,0.043,0.645l1.575,1.51c0.171,0.167,0.43,0.149,0.577-0.039l7.483-9.602 C17.616,5.456,17.582,5.182,17.394,5.035z M12.502,5.035l-0.57-0.444c-0.188-0.147-0.462-0.113-0.609,0.076l-6.39,8.198 c-0.147,0.188-0.406,0.206-0.577,0.039l-2.614-2.556c-0.171-0.167-0.447-0.164-0.614,0.007l-0.505,0.516 c-0.167,0.171-0.164,0.447,0.007,0.614l3.887,3.8c0.171,0.167,0.43,0.149,0.577-0.039l7.483-9.602 C12.724,5.456,12.69,5.182,12.502,5.035z">
+                                  </path>
+                                </svg>
+                              </span>
+                            </div>
+                            <span
+                              class="visible overflow-hidden text-elipsis whitespace-nowrap inline-block grow relative ">
+                              {{chat.message}}
+                            </span>
+                          </span>
+                        </div>
+                        <div class="ml-[6px] flex-none max-w-full text-3 leading-5 text-[#8696a0]">
+                          <span>
+                            <div class="mr-0 mr-[5px] text-[#8696a0] inline-block align-top">
+                              <span>
+                                <svg height="15" width="15" preserveAspectRatio="xMidYMid meet" class="">
+                                  <path fill="currentColor"
+                                    d="M12.074 4.21 8.7 8.232l.116 4.233a.4.4 0 0 1-.657.318L.43 6.297a.4.4 0 0 1 .199-.702l4.196-.622L8.196.957a.63.63 0 0 1 .887-.078l2.914 2.445a.63.63 0 0 1 .077.887ZM1.294 14.229a.713.713 0 0 1-1.09-.915l2.674-3.64 1.536 1.288-3.12 3.267Z">
+                                  </path>
+                                </svg>
+                              </span>
+                            </div>
+                          </span><span></span><span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
           </div>
-          <div class="text-sm text-gray-400">{{chat.hour}}</div>
-        </li> 
-      </ul>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-  
-
-       
-    
-  
