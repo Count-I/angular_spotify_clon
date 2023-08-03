@@ -7,9 +7,9 @@
     "ts:node": "ts-node src/app.ts",
     "clean": "del build",
     "build": "tsc",
-    "start": "nod build/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+    "dev":"ts-node-dev --respawn --transpile-only /app.ts",
+    "start":"node build/app.js"
   },
   "keywords": [],
   "author": "",

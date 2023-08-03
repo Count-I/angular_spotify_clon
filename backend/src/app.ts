@@ -18,4 +18,3 @@ mongoose.connect(urlDb)
 app.listen(app.get('port'), ()=>{
     console.log(`Funcionandig, Server on port ${app.get('port')}`);
 });
-
