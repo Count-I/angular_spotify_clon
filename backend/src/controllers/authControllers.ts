@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-export const contacts = (req: Request, res: Response) => {
+export const  contacts = (req: Request, res: Response) => {
   try {
 
     const { nombre, descripcion, telefono } = req.params;
@@ -26,6 +26,7 @@ export const createContact = (req: Request, res: Response) => {
     res.status(500).send('Error en el servidor');
   }
 };
+
 
 let contactsList = [
   { id: 1, nombre: 'John', descripcion: 'Amigo', telefono: '123456' , contrasenia:12},

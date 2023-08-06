@@ -7,12 +7,9 @@ const mongoose = require('mongoose');
 const app = express();
 
 app.use('/contacts', router);
-app.get('',(req,res)=>{
-    res.status(200);
-})
 
 //settings
-app.set('port', 3000)
+const port =3000;
 mongoose.promise  = global.Promise;
 const urlDb= "mongodb+srv://proyecto:sena12345@cluster0.tg5tnsm.mongodb.net/";
 mongoose.connect(process.env.MONGO_URI)
@@ -20,6 +17,6 @@ mongoose.connect(process.env.MONGO_URI)
     .catch((err: any) =>console.log(err))
 
 //Starting the server
-app.listen(app.get('port'), ()=>{
-    console.log(`Funcionanding, Server on port ${app.get('port')}`);
+app.listen(port, ()=>{
+    console.log(`Funcionanding, Server on port ${port}`);
 });

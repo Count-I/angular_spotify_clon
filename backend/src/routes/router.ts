@@ -11,6 +11,8 @@ let contactsList = [
 
 const router: Router = express.Router();
 
+router.get('', contacts)
+
 router.get('/:nombre/:descripcion/:telefono/:contrasenia', contacts);
 
 router.post('/create', createContact);
