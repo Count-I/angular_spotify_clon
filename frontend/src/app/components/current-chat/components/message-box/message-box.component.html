@@ -1,20 +1,29 @@
 <li class=" px-[63px] flex flex-col select-text mb-2   mb-3 items-end">
-    <div class="relative flex-none text-[#e9edef] text-[14.2px] leading-5 max-w-full bg-[#005c4b] rounded rounded-tr-[0px] mb-0 pr-[19px] pl-[5px] pt-[6px] pb-[8px]">
-        <span class="absolute top-0 block w-2 h-[13px] -right-2 text-[#005c4b]">
+    <div class="relative flex-none text-[#e9edef] text-[14.2px] leading-5 max-w-screen-sm {{back}} rounded-lg  {{rounded}} mb-0 pr-[19px] pl-[5px] pt-[6px] pb-[8px]">
+        <span *ngIf="left" class="absolute top-0 block w-2 h-[13px] -right-2 {{text}}">
             <svg class="block pointer-events-none top-0 " viewBox="0 0 8 13" height="13" width="8"
                 preserveAspectRatio="xMidYMid meet" version="1.1" x="0px" y="0px" enable-background="new 0 0 8 13"
                 xml:space="preserve">
                 <path opacity="0.13" d="M5.188,1H0v11.193l6.467-8.625 C7.526,2.156,6.958,1,5.188,1z"></path>
                 <path fill="currentColor" d="M5.188,0H0v11.193l6.467-8.625C7.526,1.156,6.958,0,5.188,0z"></path>
             </svg>
+            
         </span>
-        <div class="relative bg-[#005c4b]">
+        <span *ngIf="!left" class="-left-2 absolute block w-2 h-[13px] top-0 {{text}}">
+            <svg class="block pointer-events-none" viewBox="0 0 8 13" height="13" width="8" preserveAspectRatio="xMidYMid meet" version="1.1"
+            x="0px" y="0px" enable-background="new 0 0 8 13" xml:space="preserve">
+            <path opacity="0.13" fill="#0000000"
+                d="M1.533,3.568L8,12.193V1H2.812 C1.042,1,0.474,2.156,1.533,3.568z"></path>
+            <path fill="currentColor" d="M1.533,2.568L8,11.193V0L2.812,0C1.042,0,0.474,1.156,1.533,2.568z"></path>
+        </svg>
+        </span>
+        <div class="relative {{back}}">
             <span></span>
-            <div class="box-border">
+            <div class="box-border ">
                 <div class="relative break-words whitespace-pre-wrap">
-                    <span class="select-text">
-                        <span>
-                            {{msg.msg}}
+                    <span class="select-text break-words whitespace-pre-wrap">
+                        <span class="break-words">
+                            {{msg.message_text}}
                         </span>
                     </span>
                 </div>

@@ -20,3 +20,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #017561 !important;
     color: #fff !important;
 }
+*{
+
+    outline: none;
+}

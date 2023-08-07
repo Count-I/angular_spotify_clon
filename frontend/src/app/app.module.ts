@@ -22,6 +22,8 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ChatService } from './services/chat.service';
 import { MainComponent } from './views/main/main.component';
 import { HeaderComponent } from './components/contact/components/header/header.component';
+import { SearcherComponent } from './components/contact/components/searcher/searcher.component';
+import { LoadingChatComponent } from './components/current-chat/components/loading-chat/loading-chat.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -38,7 +40,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MessageBoxComponent,
     SignUpComponent,
     MainComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearcherComponent,
+    LoadingChatComponent,
   ],
   imports: [
     BrowserModule,

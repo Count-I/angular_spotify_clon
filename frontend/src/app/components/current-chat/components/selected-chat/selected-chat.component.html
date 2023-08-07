@@ -1,17 +1,17 @@
-<div id="main" class="bg-[#0b141a] flex flex-col h-full">
+<div *ngIf="contactService.contact" id="main" class="bg-[#0b141a] flex flex-col h-full">
     <div class="back absolute w-full h-full top-0 left-0">
     </div>
-    <header class="relative box-border flex items-center w-full z-50 bg-[#202c33] py-2.5 px-4 border-l border-solid border-[rgb(134,150,160,0.15)]">
+    <header class="relative box-border flex items-center w-full h-[59px] z-50 bg-[#202c33] py-2.5 px-4 border-l border-solid border-[rgb(134,150,160,0.15)]">
         <div title="Detalles del perfil" class="flex pr-[15px]">
             <div class="relative w-10 h-10 rounded-full">
-                <img class="relative block overflow-hidden h-full w-full rounded-full" src="{{imagen}}" alt="">
+                <img class="relative block overflow-hidden h-full w-full rounded-full object-cover" src="{{contactService.contact.profile_photo}}" alt="">
             </div>
         </div>
         <div class="flex flex-col justify-center cursor-pointer grow" role="button">
             <div class="text-left flex-start leading-normal -m-px">
                 <div class="flex grow overflow-hidden text-[16px] leading-5 text-ellipsis whitespace-nowrap text-white">
                     <span>
-                        Usuario
+                        {{contactService.contact.first_name}} {{contactService.contact.last_name}}
                     </span>
                 </div>
             </div>
@@ -50,7 +50,7 @@
         </div>
     </header>
     <span></span>
-    <div class="conversation-panel-body relative flex-1 order-2 z-10 text-white border-l border-solid border-[rgb(134,150,160,0.15)]">
+    <div class="conversation-panel-body relative flex-1 order-2 z-10 text-white border-l mt-5 border-solid border-[rgb(134,150,160,0.15)]">
         <div class="visible">
             <div id="scroll-down"></div>
             <div #scroll
@@ -58,14 +58,14 @@
                 <ul class="flex flex-col pl" tabindex="-1" *ngFor="let msg of messages">
                     <div tabindex="-1" class="relative">
 
-                        <div *ngIf="msg.user">
+                        <div *ngIf="msg.from_number == this.user_number">
                             <div class="flex flex-row justify-end">
-                                <app-message-box [msg]="msg"></app-message-box>
+                                <app-message-box [msg]="msg" [color]="'#005c4b'"></app-message-box>
                             </div>
                         </div>
-                        <div *ngIf="!msg.user">
+                        <div *ngIf="!(msg.from_number == this.user_number)">
                             <div class="flex flex-row justify-start">
-                                <app-message-box [msg]="msg"></app-message-box>
+                                <app-message-box [msg]="msg" [color]="'#202c33'"></app-message-box>
                             </div>
                         </div>
 
@@ -121,22 +121,9 @@
                             <div tabindex="-1"
                                 class=" select-text py-[9px] px-3 flex-auto box-border border border-solid border-[#2a3942] my-[5px] mx-2 min-w-0 min-h-[20px] font-normal leading-5 text-[15px] flex bg-[#2a3942] rounded-lg ">
                                 <form class="relative w-full">
-                                    <!-- <div
-                                    contenteditable="true"
-                                    role="textbox"
-                                    spellcheck="false"
-                                        title="Escribe un mensaje aquí"
-                                        class=" focus:outline-0 whitespace-pre-wrap select-text max-h-[7.35em] min-h-[1.47em] break-words overflow-x-hidden overflow-y-auto">
-                                        <br>
-                                        <input  class="relative select-text"/>
-                                    </div>
-                                    <div 
-                                        class="absolute pointer-events-none text-[#8696a0] left-[0.5ch] top-0 bottom-0 z-20 ">
-                                        Escribe un mensaje aquí
-                                    </div> -->
                                     <input class="focus:outline-0 w-full bg-[#2a3942] select-none" [(ngModel)]="msg"
                                         name="test" placeholder="Escribe un mensaje aquí" type="text"
-                                        (keyup.enter)="handleSubmit($event)">
+                                        (keyup.enter)="handleSubmit($event)" autocomplete="off">
                                 </form>
                             </div>
                             <div

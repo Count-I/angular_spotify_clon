@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Contact } from 'src/app/models/contact.model';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -6,156 +8,36 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  chats : any = [
+  constructor(public contactService: ContactService) {
+  }
+  displayChat(user: any) {
+    console.log(user);
+
+  }
+  contacts: Contact[] = [
     {
-      img: 'https://www.ecartelera.com/images/sets/24100/24148.jpg',
-      name: 'Juan Diego',
-      message: 'hey',
-      hour: '3:15'
+      contact_id: 1,
+      first_name: 'Juan',
+      last_name: 'Diego',
+      profile_photo: 'https://www.ecartelera.com/images/sets/24100/24148.jpg',
+      phone_number: '3165300568',
+      info: 'hey',
     },
     {
-      img: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-      name: 'Maria Lopez',
-      message: 'boludo',
-      hour: '4:50'
-  },
-  {
-    img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-    name: 'Carlos Gomez',
-    message: 'nos vemos',
-    hour: '2:10'
-  },
-  {
-    img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-    name: 'Ana Martinez',
-    message: 'todo bien',
-    hour: '1:00'
-},
-{
-  img: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-  name: 'Maria Lopez',
-  message: 'boludo',
-  hour: '4:50'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-  img: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-  name: 'Maria Lopez',
-  message: 'boludo',
-  hour: '4:50'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-img: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-name: 'Maria Lopez',
-message: 'boludo',
-hour: '4:50'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-  img: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-  name: 'Maria Lopez',
-  message: 'boludo',
-  hour: '4:50'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-img: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-name: 'Maria Lopez',
-message: 'boludo',
-hour: '4:50'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-},
-{
-img: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-name: 'Carlos Gomez',
-message: 'nos vemos',
-hour: '2:10'
-},
-{
-img: 'https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg',
-name: 'Ana Martinez',
-message: 'todo bien',
-hour: '1:00'
-}
+      contact_id: 2,
+      first_name: 'Maria',
+      last_name: 'Lopez',
+      profile_photo: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
+      phone_number: '3165300568',
+      info: 'Avaible',
+    },
+    {
+      contact_id: 3,
+      first_name: 'Carlos',
+      last_name: 'Gomez',
+      profile_photo: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
+      phone_number: '3165300568',
+      info: 'Ocupado',
+    },
   ]
 }

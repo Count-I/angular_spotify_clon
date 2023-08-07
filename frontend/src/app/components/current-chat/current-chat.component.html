@@ -1,4 +1,11 @@
-<div class="relative h-full overflow-hidden">
-<!-- <app-landing-chat></app-landing-chat> -->
-<app-selected-chat></app-selected-chat>
+<div  class="relative h-full overflow-hidden">
+    <div *ngIf="!(contactService.isDisplay() | async)  && !(contactService.isLoading() | async)">
+        <app-landing-chat></app-landing-chat>
+    </div>
+    <div *ngIf="!(contactService.isDisplay() | async) && (contactService.isLoading() | async)">
+        <app-loading-chat></app-loading-chat>
+    </div>
+    <div class="relative h-full" *ngIf="contactService.isDisplay() | async">
+        <app-selected-chat></app-selected-chat>
+    </div>
 </div>
