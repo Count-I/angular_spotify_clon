@@ -24,6 +24,8 @@ import { MainComponent } from './views/main/main.component';
 import { HeaderComponent } from './components/contact/components/header/header.component';
 import { SearcherComponent } from './components/contact/components/searcher/searcher.component';
 import { LoadingChatComponent } from './components/current-chat/components/loading-chat/loading-chat.component';
+import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
+import { MainConfigComponent } from './components/main-config/main-config.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -43,6 +45,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     HeaderComponent,
     SearcherComponent,
     LoadingChatComponent,
+    ContactDetailComponent,
+    MainConfigComponent,
   ],
   imports: [
     BrowserModule,
