@@ -1,0 +1,32 @@
+.back {
+    opacity: 0.06;
+    background-image: url('../../../../../assets/chat-background.png');
+    background-repeat: repeat;
+    background-size: 412.5px 749.25px;
+}
+
+.msgContainer {
+    flex: 1;
+}
+
+.conversation-panel-body {
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    height: 6px;
+    background-color: #555;
+}
