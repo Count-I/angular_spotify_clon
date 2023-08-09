@@ -11,6 +11,8 @@ export class ContactService {
 
   displayed = new BehaviorSubject<boolean>(false);
   loading = new BehaviorSubject<boolean>(false);
+  contactDetail = new BehaviorSubject<boolean>(true);
+
   contact!: Contact;
 
   displayChat(contact: any) {
@@ -33,6 +35,14 @@ export class ContactService {
   currentChat() {
     return this.contact;
   }
-
+  isContactDetailActive(): Observable<boolean>  {
+    return this.contactDetail.asObservable();
+  }
+  showContactDetail() {
+    this.contactDetail.next(true)
+  }
+  closeContactDetail() {
+    this.contactDetail.next(false)
+  }
 
 }

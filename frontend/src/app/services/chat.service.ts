@@ -1,24 +1,22 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { CookieService } from 'ngx-cookie-service';
+import { map } from 'rxjs/operators';
+import { msg } from '../models/msg.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn:'root'
 })
-export class ChatService extends Socket{
+export class ChatService {
+  constructor(private socket: Socket) {}
 
-  outEven: EventEmitter<any> = new EventEmitter();
-
-  constructor(private cookieService: CookieService, socket:Socket) {
-    super({
-      url: 'http://localhost:3000',
-      options:{
-        query:{
-          nameRoom: cookieService.get('room')
-        }
-      }
-    });
+  sendMessage(msg: any) {
+    this.socket.emit('client:sendMessage', msg);
   }
-
-  
+  onNewMessage(callback:any){
+    this.socket.on('server:newMessage', callback )
+  }
+  getMessages(callback?:any, chatContact?:any) {
+    this.socket.emit('client:getMessages', chatContact)
+    this.socket.on('server:emitMessages', callback)
+  }
 }

@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -18,14 +19,16 @@ import { LandingChatComponent } from './components/current-chat/components/landi
 import { SelectedChatComponent } from './components/current-chat/components/selected-chat/selected-chat.component';
 import { MessageBoxComponent } from './components/current-chat/components/message-box/message-box.component';
 import { CookieService } from 'ngx-cookie-service';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { ChatService } from './services/chat.service';
+import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+// import {  SocketOne, SocketTwo } from './services/chat.service';
 import { MainComponent } from './views/main/main.component';
 import { HeaderComponent } from './components/contact/components/header/header.component';
 import { SearcherComponent } from './components/contact/components/searcher/searcher.component';
 import { LoadingChatComponent } from './components/current-chat/components/loading-chat/loading-chat.component';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 import { MainConfigComponent } from './components/main-config/main-config.component';
+import { HeaderContactDetailComponent } from './components/contact-detail/header-contact-detail/header-contact-detail.component';
+import { ChatService } from './services/chat.service';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -47,6 +50,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     LoadingChatComponent,
     ContactDetailComponent,
     MainConfigComponent,
+    HeaderContactDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatMenuModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [CookieService, ChatService],

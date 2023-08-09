@@ -20,7 +20,7 @@ export class ContactComponent {
       first_name: 'Juan',
       last_name: 'Diego',
       profile_photo: 'https://www.ecartelera.com/images/sets/24100/24148.jpg',
-      phone_number: '3165300568',
+      phone_number: 1,
       info: 'hey',
     },
     {
@@ -28,7 +28,7 @@ export class ContactComponent {
       first_name: 'Maria',
       last_name: 'Lopez',
       profile_photo: 'https://i0.wp.com/listas.uachatec.xyz/wp-content/uploads/2021/06/scarlett-johansson-foto-instagram.jpg?resize=708%2C440&ssl=1',
-      phone_number: '3165300568',
+      phone_number: 2,
       info: 'Avaible',
     },
     {
@@ -36,7 +36,7 @@ export class ContactComponent {
       first_name: 'Carlos',
       last_name: 'Gomez',
       profile_photo: 'https://hips.hearstapps.com/hmg-prod/images/matt-damon-arrives-premiere-of-foxs-ford-v-ferrari-held-at-news-photo-1611154704.',
-      phone_number: '3165300568',
+      phone_number: 3,
       info: 'Ocupado',
     },
   ]

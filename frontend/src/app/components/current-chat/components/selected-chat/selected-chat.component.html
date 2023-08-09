@@ -1,7 +1,7 @@
 <div *ngIf="contactService.contact" id="main" class="bg-[#0b141a] flex flex-col h-full">
     <div class="back absolute w-full h-full top-0 left-0">
     </div>
-    <header class="relative box-border flex items-center w-full h-[59px] z-50 bg-[#202c33] py-2.5 px-4 border-l border-solid border-[rgb(134,150,160,0.15)]">
+    <header (click)="contactService.showContactDetail()" class="relative box-border flex items-center w-full h-[59px] z-50 bg-[#202c33] py-2.5 px-4 border-l border-solid border-[rgb(134,150,160,0.15)]">
         <div title="Detalles del perfil" class="flex pr-[15px]">
             <div class="relative w-10 h-10 rounded-full">
                 <img class="relative block overflow-hidden h-full w-full rounded-full object-cover" src="{{contactService.contact.profile_photo}}" alt="">
@@ -50,7 +50,7 @@
         </div>
     </header>
     <span></span>
-    <div class="conversation-panel-body relative flex-1 order-2 z-10 text-white border-l mt-5 border-solid border-[rgb(134,150,160,0.15)]">
+    <div class="conversation-panel-body relative flex-1 order-2 z-10 text-white border-l pt-5 border-solid border-[rgb(134,150,160,0.15)]">
         <div class="visible">
             <div id="scroll-down"></div>
             <div #scroll
