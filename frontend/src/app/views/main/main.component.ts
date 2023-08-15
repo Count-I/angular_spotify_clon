@@ -17,9 +17,5 @@ export class MainComponent  implements OnInit{
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      console.log(this.authService.currentUser);
-      
-    }, 500);
   }
 }

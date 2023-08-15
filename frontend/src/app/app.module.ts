@@ -32,7 +32,7 @@ import { HeaderContactDetailComponent } from './components/contact-detail/header
 import { ChatService } from './services/chat.service';
 
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://168.61.38.204:3000', options: {} };
 
 @NgModule({
   declarations: [

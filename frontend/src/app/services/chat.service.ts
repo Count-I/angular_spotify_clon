@@ -17,7 +17,7 @@ export class ChatService {
   messages: any[] = [];
 
   private socket: Socket;
-  private url = 'http://localhost:3000'; // your server local path
+  private url = 'http://168.61.38.204:3000w'; // your server local path
 
 
   constructor() {
