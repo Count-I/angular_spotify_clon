@@ -1,0 +1,31 @@
+.mat-mdc-menu-panel{
+    background-color: #233138 !important;
+    transform-origin: right top;
+    transform: scale(1);
+    opacity: 1;
+    right: 4px;
+    text-align: left;
+    padding: 1px 0;
+    top: 44px;
+}
+
+.mat-mdc-menu-item{
+    /* font-weight: 300 !important; */
+    font-size: 14.5px !important;
+    min-height: 40px !important;
+    height: 40px !important;
+    color: #d1d7db !important;
+    padding-right: 58px !important;
+    padding-left: 24px !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 14.5px !important;
+}
+.mat-mdc-menu-item:hover{
+    background-color: #131a1e !important;
+}
+.mat-mdc-menu-trigger:focus-visible{
+    background-color: rgba(255, 255, 255, 1);
+}

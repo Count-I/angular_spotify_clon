@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { msg } from 'src/app/models/msg.model';
+import { Message } from 'src/app/models/message.model';
 
 @Component({
   selector: 'app-message-box',
@@ -7,7 +7,7 @@ import { msg } from 'src/app/models/msg.model';
   styleUrls: ['./message-box.component.css']
 })
 export class MessageBoxComponent implements OnInit, OnChanges{
-  @Input() msg!: msg;
+  @Input()  message!: Message;
   @Input() color!: string;
   left!:boolean;
   rounded!:string

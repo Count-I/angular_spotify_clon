@@ -22,8 +22,6 @@ export class CurrentChatComponent implements OnInit{
     public configService: ConfigService
   ) {
   }
-  @ViewChild('test') test!: boolean;
-
   ngOnInit(): void {
     // this.room = this.router.snapshot.paramMap.get('room')
     // this.cookieService.set('room',this.room)

@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ConfigService } from 'src/app/services/config.service';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,12 @@ import { ConfigService } from 'src/app/services/config.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
-imagen:string="https://media.diariolasamericas.com/p/fe8db18fa8fb42e1d8f17ffc38e2018b/adjuntos/216/imagenes/000/214/0000214007/fotogaleria-las-actrices-mejor-pagadas-hollywood.jpg"
-
-constructor(public configService: ConfigService){
   
-}
+  constructor(
+    public configService: ConfigService,
+    public contactService:ContactService,
+    public authService:AuthService,
+    ){
+      
+    }
 }

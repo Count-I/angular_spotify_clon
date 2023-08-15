@@ -1,7 +1,7 @@
-<header class="px-4 flex w-full flex-end items-center relative z-50 bg-[#202c33] py-[10px] h-[59px] box-border ">
+<header *ngIf="authService.currentUser" class="px-4 flex w-full flex-end items-center relative z-50 bg-[#202c33] py-[10px] h-[59px] box-border ">
     <div class="grow">
         <div tabindex="-1" role="button" class="h-10 w-10 cursor-pointer rounded-full relative">
-            <img [src]="imagen" alt="" class="visible rounded-full overflow-hidden w-full h-full relative block">
+            <img [src]="authService.currentUser.image" alt="" class="visible rounded-full overflow-hidden w-full h-full relative block">
         </div>
     </div>
     <div class="flex-none text-[#aebac1]">
@@ -35,7 +35,7 @@
                             </svg> </span>
                     </div>
                 </div>
-                <div class="relative ml-[10px] rounded-full flex-none h-full">
+                <div (click)="contactService.showContactList()" class="relative ml-[10px] rounded-full flex-none h-full">
                     <div class="p-2 flex items-center  justify-center cursor-pointer">
                         <span>
                             <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet"

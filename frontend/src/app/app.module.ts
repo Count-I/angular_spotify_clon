@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ContactComponent } from './components/contact/contact.component';
+import { ChatComponent } from './components/chatList/chat.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
@@ -19,23 +19,25 @@ import { LandingChatComponent } from './components/current-chat/components/landi
 import { SelectedChatComponent } from './components/current-chat/components/selected-chat/selected-chat.component';
 import { MessageBoxComponent } from './components/current-chat/components/message-box/message-box.component';
 import { CookieService } from 'ngx-cookie-service';
-import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
-// import {  SocketOne, SocketTwo } from './services/chat.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SearcherContactListComponent } from './components/contact-list/components/searcher/contact-list-searcher.component';
 import { MainComponent } from './views/main/main.component';
-import { HeaderComponent } from './components/contact/components/header/header.component';
-import { SearcherComponent } from './components/contact/components/searcher/searcher.component';
+import { HeaderComponent } from './views/main/components/header/header.component';
+import { HeaderContactListComponent } from './components/contact-list/components/header/contact-list-header.component';
+import { SearcherComponent } from './views/main/components/searcher/searcher.component';
 import { LoadingChatComponent } from './components/current-chat/components/loading-chat/loading-chat.component';
 import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
 import { MainConfigComponent } from './components/main-config/main-config.component';
 import { HeaderContactDetailComponent } from './components/contact-detail/header-contact-detail/header-contact-detail.component';
 import { ChatService } from './services/chat.service';
 
+
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactComponent,
+    ChatComponent,
     ContactListComponent,
     SignInComponent,
     SigInViewComponent,
@@ -51,6 +53,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ContactDetailComponent,
     MainConfigComponent,
     HeaderContactDetailComponent,
+    HeaderContactListComponent,
+    SearcherContactListComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,

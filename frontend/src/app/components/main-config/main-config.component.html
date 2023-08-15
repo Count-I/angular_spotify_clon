@@ -38,11 +38,13 @@
     </div>
 
     <div class=" profile p-5 flex flex-row items-center hover:bg-[#202C33] ">
-      <img class="w-[20%]  duration-300 rounded-full"
-        src="https://pps.whatsapp.net/v/t61.24694-24/361655116_1020129072319423_8568814705100262884_n.jpg?ccb=11-4&oh=01_AdTA387DIlNW_sQmt1LS6kQpClcKtY65RS2Wli_8dzY-FA&oe=64D5187D"
+      <div class="w-[100px] h-[100px]">
+        <img class="w-full h-full duration-300 rounded-full object-cover"
+        src={{authService.currentUser.image}}
         alt="">
+      </div>
       <div class="info mx-[5%]">
-        <p class="text-white text-sm">Daniel <br><span class="text-xs text-gray-400">Hey, im using WhatsApp.</span> </p>
+        <p class="text-white text-sm">{{authService.currentUser.name}} <br><span class="text-xs text-gray-400">Hey, im using WhatsApp.</span> </p>
       </div>
     </div>
 

@@ -1,22 +1,61 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+// import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
-import { msg } from '../models/msg.model';
+import { Chat } from '../models/chat.model';
+import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
+import { Socket, io } from 'socket.io-client';
+
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
 export class ChatService {
-  constructor(private socket: Socket) {}
+  chats: { user: string, message: string }[] = []; // sould be Chat type
+  storage: any[] = []; // temporary before use mongo
+  roomId!: string; // temp holder
+  messages: any[] = [];
 
-  sendMessage(msg: any) {
-    this.socket.emit('client:sendMessage', msg);
+  private socket: Socket;
+  private url = 'http://localhost:3000'; // your server local path
+
+
+  constructor() {
+    this.socket = io(this.url, { transports: ['websocket', 'polling', 'flashsocket'] });  
   }
-  onNewMessage(callback:any){
-    this.socket.on('server:newMessage', callback )
+
+
+  joinRoom(data: any): void {
+    this.socket.emit('join', data);
   }
-  getMessages(callback?:any, chatContact?:any) {
-    this.socket.emit('client:getMessages', chatContact)
-    this.socket.on('server:emitMessages', callback)
+
+  sendMessage(data: any): void {
+    this.socket.emit('message', data);
+  }
+  loadMessages(data:any){
+    this.socket.emit('get all messages', data);
+  }
+
+  getMessage(): Observable<any> {
+    return new Observable<{ user: string, message: string }>(observer => {
+      this.socket.on('new message', (data) => {
+        observer.next(data);
+      });
+      this.socket.on('all messages', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    });
+  }
+
+  getStorage() { // needs to change after mongo implementation
+    const storage: string = localStorage.getItem('chats')!;
+    return storage ? JSON.parse(storage) : [];
+  }
+
+  setStorage(data: any) {
+    localStorage.setItem('chats', JSON.stringify(data));
   }
 }

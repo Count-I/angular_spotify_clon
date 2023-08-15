@@ -8,6 +8,7 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main-config',
@@ -36,7 +37,10 @@ export class MainConfigComponent implements OnInit{
   
   @Input() isOpen = true;
 
-  constructor(public configService: ConfigService) {
+  constructor(
+    public configService: ConfigService,
+    public authService: AuthService
+    ) {
 
   }
   ngOnInit(): void {

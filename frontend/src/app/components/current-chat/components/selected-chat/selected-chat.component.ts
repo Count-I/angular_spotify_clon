@@ -1,7 +1,8 @@
 import { NgClass } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, OnDestroy, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { flatMap } from 'rxjs';
-import { msg } from 'src/app/models/msg.model';
+import { Message } from 'src/app/models/message.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { ContactService } from 'src/app/services/contact.service';
 
@@ -11,27 +12,23 @@ import { ContactService } from 'src/app/services/contact.service';
   templateUrl: './selected-chat.component.html',
   styleUrls: ['./selected-chat.component.css']
 })
-export class SelectedChatComponent implements OnInit, OnDestroy, OnChanges {
+export class SelectedChatComponent implements OnInit, OnDestroy {
   @ViewChild('scroll') private scrollContainer!: ElementRef;
   @ViewChild('child') child: any;
   user_number: number = 11;
   model: string = "";
   msg: string = "";
   user = true;
-  messages: msg[] = []
-
-  currentUser = {
-    phone_number: 11,
-  }
-
-  chatContact = {
-    currentUser: 11,
-    contact: this.contactService.contact
-  }
+  room: string = "room-1"
+  messages: any[] = [] // should be Message type
+  storageArray: any[] = [];
+  condition: boolean = false;
+  currentSession = localStorage.getItem('session');
 
   constructor(
     public contactService: ContactService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    public authService: AuthService
   ) {
 
   }
@@ -40,44 +37,60 @@ export class SelectedChatComponent implements OnInit, OnDestroy, OnChanges {
     this.messages = e;
   }
 
+  renderMessages() {
+    this.scrollToBottom();
+  }
+
   scrollToBottom(): void {
-    setTimeout(() => { this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight; }, 1);
+    setTimeout(() => { this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight; }, 60);
   }
   ngOnInit(): void {
-    this.chatService.getMessages(this.setMessages, this.chatContact);
-    setTimeout(() => {   
-      console.log(this.messages);
-      
-      // this.messages = this.messages.filter((contact: any) => contact.contact_id == this.contactService.contact.contact_id);
-    }, 1);
+    this.chatService.loadMessages(this.chatService.roomId);
     this.scrollToBottom();
-  }
-  ngOnChanges(): void {
-      this.chatService.onNewMessage(()=>{
-        this.chatService.getMessages(this.setMessages, this.chatContact);
-      })
+
+    this.chatService.getMessage()
+      .subscribe((data: any) => {
+        if (this.chatService.roomId) {
+          setTimeout(() => {
+            this.messages = data;
+            this.scrollToBottom();
+          }, 4);
+        }
+      });
   }
 
-  handleSubmit(e: any) {
-    e.preventDefault();
+  sendMessage() {
     this.scrollToBottom();
-    // webSocket
-    const msg = {
-      user: false,
-      contact_id: 1,
-      message_text: this.msg,
-      from_number: this.currentUser.phone_number,
-      to_number: this.chatContact.contact.phone_number
+    this.chatService.sendMessage({
+      user: this.authService.currentUser.name,
+      room: this.chatService.roomId,
+      message: this.msg
+    });
+
+    this.chatService.storage = this.chatService.getStorage();
+    const storeIndex = this.chatService.storage
+      .findIndex((storage) => storage['roomId'] === this.chatService.roomId)!;
+
+    if (storeIndex > -1) {
+      this.chatService.storage[storeIndex]['chats'].push({
+        user: this.authService.currentUser.name,
+        message: this.msg
+      });
+    } else {
+      const updateStorage = {
+        roomId: this.chatService.roomId,
+        chats: [{
+          user: this.authService.currentUser.name,
+          message: this.msg
+        }]
+      };
+
+      this.chatService.storage.push(updateStorage);
     }
 
-    this.chatService.sendMessage(msg)
+    this.chatService.setStorage(this.chatService.storage);
     this.msg = "";
-    if (this.user) {
-      this.user = false
-      return;
-    }
-    this.user = true
-    return;
+    this.scrollToBottom();
   }
 
   ngOnDestroy(): void {

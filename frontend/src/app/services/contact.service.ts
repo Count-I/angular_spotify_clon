@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Contact } from '../models/contact.model';
+import { AuthService } from './auth.service';
+import { ChatService } from './chat.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private chatService: ChatService
+  ) { }
 
   displayed = new BehaviorSubject<boolean>(false);
   loading = new BehaviorSubject<boolean>(false);
-  contactDetail = new BehaviorSubject<boolean>(true);
-
-  contact!: Contact;
+  contactDetail = new BehaviorSubject<boolean>(false);
+  contactList = new BehaviorSubject<boolean>(false);
+  contact!: any;
 
   displayChat(contact: any) {
-    this.closeChat();
+    this.authService.selectUserHandler(contact.phone);
+      this.closeChat();
     this.loading.next(true);
     setTimeout(() => {
       this.displayed.next(true);
     }, 4);
-    this.contact = contact;
+    this.contact = contact; // old feature
   }
   closeChat() {
     this.displayed.next(false);
@@ -35,7 +41,8 @@ export class ContactService {
   currentChat() {
     return this.contact;
   }
-  isContactDetailActive(): Observable<boolean>  {
+
+  isContactDetailActive(): Observable<boolean> {
     return this.contactDetail.asObservable();
   }
   showContactDetail() {
@@ -43,6 +50,16 @@ export class ContactService {
   }
   closeContactDetail() {
     this.contactDetail.next(false)
+  }
+
+  isContactListActive(): Observable<boolean> {
+    return this.contactList.asObservable();
+  }
+  showContactList() {
+    this.contactList.next(true);
+  }
+  closeContactList() {
+    this.contactList.next(false);
   }
 
 }
